@@ -1,4 +1,4 @@
-<div x-data="{ 
+<div x-data="{
     open : false
 }"
     >
@@ -34,9 +34,7 @@
                 </button>
             </div>
 
-            <!-- Links -->
             <div>
-                <!-- 'Women' tab panel, show/hide based on tab state. -->
                 <div id="tabs-1-panel-1" class="pt-10 pb-8 px-4 space-y-10" aria-labelledby="tabs-1-tab-1"
                     role="tabpanel" tabindex="0">
                     <div class="grid grid-cols-2 gap-x-4">
@@ -376,16 +374,6 @@
             </div>
 
             <div class="border-t border-gray-200 py-6 px-4 space-y-6">
-                <div class="flow-root">
-                    <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Company</a>
-                </div>
-
-                <div class="flow-root">
-                    <a href="#" class="-m-2 p-2 block font-medium text-gray-900">Stores</a>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-200 py-6 px-4 space-y-6">
                 @auth
                 <div class="flow-root">
                     <a href="#" class="-m-2 p-2 block font-medium text-gray-900">{{ Auth::user()->name }}</a>
@@ -404,7 +392,7 @@
     </div>
 
     <header class="relative bg-white">
-        
+
         @include('layouts.alerts')
 
         <nav aria-label="Top" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -476,7 +464,7 @@
                                                                 alt="Models sitting back to back, wearing Basic Tee in black and bone."
                                                                 class="object-center object-cover">
                                                         </div>
-                                                        <a href="#" class="mt-6 block font-medium text-gray-900">
+                                                        <a href="{{ route('overview', $latest) }}" class="mt-6 block font-medium text-gray-900">
                                                             <span class="absolute z-10 inset-0"
                                                                 aria-hidden="true"></span>
                                                                 {{ $latest->name }}
@@ -496,7 +484,7 @@
 
                                                             @foreach ($category->categories as $_category)
                                                             <li class="flex">
-                                                                <a href="#" class="hover:text-gray-800">
+                                                                <a href="{{ route('category', $_category) }}" class="hover:text-gray-800">
                                                                     {{ $_category->name }}
                                                                 </a>
                                                             </li>
@@ -512,11 +500,6 @@
                             </div>
                             @endforeach
 
-                            <a href="#"
-                                class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Company</a>
-
-                            <a href="#"
-                                class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Stores</a>
                         </div>
                     </div>
 
@@ -524,7 +507,7 @@
 
                         @auth
                         <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                            <a href="#" class="text-sm font-medium text-gray-700 hover:text-gray-800">{{ Auth::user()->name }}</a>
+                            <a href="/admin" class="text-sm font-medium text-gray-700 hover:text-gray-800">{{ Auth::user()->name }}</a>
                         </div>
                         @else
                         <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
@@ -534,23 +517,8 @@
                         </div>
                         @endauth
 
-                        <!-- Search -->
-                        <div class="flex lg:ml-6">
-                            <a href="#" class="p-2 text-gray-400 hover:text-gray-500">
-                                <span class="sr-only">Search</span>
-                                <!-- Heroicon name: outline/search -->
-                                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </a>
-                        </div>
-
-                        <!-- Cart -->
                         <div class="ml-4 flow-root lg:ml-6">
                             <a href="#" x-on:click="cart = true" class="group -m-2 p-2 flex items-center">
-                                <!-- Heroicon name: outline/shopping-bag -->
                                 <svg class="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor" aria-hidden="true">

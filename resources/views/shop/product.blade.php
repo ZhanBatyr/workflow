@@ -10,7 +10,7 @@
                         @if ($product->category->category_id)
                         <li>
                             <div class="flex items-center">
-                                <a href="#" class="mr-2 text-sm font-medium text-gray-900">
+                                <a href="{{ route('category', $product->category->category) }}" class="mr-2 text-sm font-medium text-gray-900">
                                     {{ $product->category->category->name }}
                                 </a>
                                 <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor"
@@ -23,7 +23,7 @@
 
                         <li>
                             <div class="flex items-center">
-                                <a href="#" class="mr-2 text-sm font-medium text-gray-900">
+                                <a href="{{ route('category', $product->category) }}" class="mr-2 text-sm font-medium text-gray-900">
                                     {{ $product->category->name }}
                                 </a>
                                 <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor"

@@ -10,21 +10,26 @@ class CartController extends Controller
 {
     public function add(Request $request)
     {
-        $cart = auth()->check() ? auth()->user()->cart()->firstOrCreate(['session_id' => $request->session()->getId()]) : Cart::query()->where('session_id', $request->session()->getId())->firstOrCreate();
+        $cart = auth()->check() ? auth()->user()->cart()->firstOrCreate() : Cart::query()->where('session_id', $request->session()->getId())->firstOrCreate();
 
         $cart->products()->attach($request->product_id);  
 
-        return response()->json([
-            'success' => true,
-            'qty' => $cart->products()->count(),
-            'total' => $cart->subtotal,
-            'items' => view('layouts.cart.items', compact('cart'))->render()
-        ]);
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'qty' => $cart->products()->count(),
+                'total' => $cart->subtotal,
+                'items' => view('layouts.cart.items', compact('cart'))->render()
+            ]);
+        } else {
+            return back();
+        }
+    
     }
 
     public function remove(Request $request)
     {
-        $cart = auth()->check() ? auth()->user()->cart()->firstOrCreate(['session_id' => $request->session()->getId()]) : Cart::query()->where('session_id', $request->session()->getId())->firstOrCreate();
+        $cart = auth()->check() ? auth()->user()->cart()->firstOrCreate() : Cart::query()->where('session_id', $request->session()->getId())->firstOrCreate();
 
         $cart->products()->detach($request->product_id);
 

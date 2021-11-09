@@ -25,7 +25,6 @@
             if (auth()->check()) {
                 $cart = \App\Models\Cart::query()->firstOrCreate([
                     'user_id' => auth()->user()->id,
-                    'session_id' => request()->session()->getId()
                 ]);
             } else {
                 $cart = \App\Models\Cart::query()->firstOrCreate([
